@@ -28,22 +28,28 @@ class MainView: UIView {
         btnLogin = addButton(title: "ログイン")
         btnLogout = addButton(title: "ログアウト")
         btnSettings = addButton(title: "各種設定")
-        self.addSubview(lblLastLogin)
-        self.addSubview(btnLogin)
-        self.addSubview(btnLogout)
-        self.addSubview(btnSettings)
-        self.lblLastLoginLayout()
-        self.btnLoginLayout()
-        self.btnLogoutLayout()
-        self.btnSettingsLayout()
+//        self.addSubview(lblLastLogin)
+//        self.addSubview(btnLogin)
+//        self.addSubview(btnLogout)
+//        self.addSubview(btnSettings)
+//        self.lblLastLoginLayout()
+//        self.btnLoginLayout()
+//        self.btnLogoutLayout()
+//        self.btnSettingsLayout()
+        
+        lblLastLogin.frame = CGRect(x: 10, y: 10, width: self.frame.width / 5 * 2, height: self.frame.height - 20)
+        btnLogin.frame = CGRect(x: lblLastLogin.frame.width + lblLastLogin.frame.origin.x + 10, y: 10, width: self.frame.width / 5 * 2, height: self.frame.height - 20)
+        btnLogout.frame = CGRect(x: btnLogin.frame.width + btnLogin.frame.origin.x + 10, y: 10, width: self.frame.width / 5, height: self.frame.height - 20)
+        btnSettings.frame = CGRect(x: btnLogout.frame.width + btnLogout.frame.origin.x + 10, y: 10, width: self.frame.width / 5, height: self.frame.height - 20)
+        
     }
     
     private func addLabel(text: String) -> UILabel {
         let label = UILabel()
         label.text = text
         label.textAlignment = NSTextAlignment.left
-        label.sizeToFit()
-        label.font.withSize(16)
+//        label.sizeToFit()
+        label.font = .systemFont(ofSize: 16)
         return label
     }
     
@@ -54,7 +60,7 @@ class MainView: UIView {
         button.setTitleColor(
             .blue,
             for: .normal)
-        button.titleLabel?.font.withSize(16)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
         return button
     }
 
@@ -78,7 +84,6 @@ class MainView: UIView {
     private func btnSettingsLayout() {
         btnSettings.frame.origin.x = self.frame.width - (btnSettings.frame.width + 10)
         btnSettings.frame.size.height = self.frame.height - 20
-        
     }
     
     @IBAction func login(_ sender: Any) {
@@ -86,6 +91,7 @@ class MainView: UIView {
         if btnLogout.isHidden {
             btnLogout.isHidden = false
         }
+        btnLogout.frame.origin.x = lblLastLogin.frame.origin.x + lblLastLogin.frame.width + 10
     }
     
     @IBAction func logout(_ sender: Any) {
@@ -93,5 +99,6 @@ class MainView: UIView {
         if btnLogin.isHidden {
             btnLogin.isHidden = false
         }
+        btnLogin.frame.origin.x = lblLastLogin.frame.origin.x + lblLastLogin.frame.width + 10
     }
 }
