@@ -19,14 +19,13 @@ class ViewController: UIViewController {
                 x: 0,
                 y: self.view.center.y,
                 width: self.view.frame.width,
-//                width: mainSize.width,
                 height: 150
         ))
         self.view.addSubview(mainView)
     }
     
     override func viewDidLayoutSubviews() {
-        mainView.setLayouts()
+        mainView.layoutSubviews()
     }
 }
 

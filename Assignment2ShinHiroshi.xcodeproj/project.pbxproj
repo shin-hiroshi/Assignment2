@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		754BF7272383D24400E0FABE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754BF7262383D24400E0FABE /* MainView.swift */; };
-		754BF7292383D3A700E0FABE /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754BF7282383D3A700E0FABE /* PaddingLabel.swift */; };
 		756D5AED237E9BDF006FB222 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756D5AEC237E9BDF006FB222 /* AppDelegate.swift */; };
 		756D5AEF237E9BDF006FB222 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756D5AEE237E9BDF006FB222 /* SceneDelegate.swift */; };
 		756D5AF1237E9BDF006FB222 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756D5AF0237E9BDF006FB222 /* ViewController.swift */; };
@@ -38,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		754BF7262383D24400E0FABE /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		754BF7282383D3A700E0FABE /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		756D5AE9237E9BDF006FB222 /* Assignment2ShinHiroshi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment2ShinHiroshi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		756D5AEC237E9BDF006FB222 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		756D5AEE237E9BDF006FB222 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				754BF7262383D24400E0FABE /* MainView.swift */,
-				754BF7282383D3A700E0FABE /* PaddingLabel.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -273,7 +270,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				754BF7292383D3A700E0FABE /* PaddingLabel.swift in Sources */,
 				756D5AF1237E9BDF006FB222 /* ViewController.swift in Sources */,
 				756D5AED237E9BDF006FB222 /* AppDelegate.swift in Sources */,
 				754BF7272383D24400E0FABE /* MainView.swift in Sources */,

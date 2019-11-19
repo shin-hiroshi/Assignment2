@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class MainView: UIView {
-    private var lblLastLogin: PaddingLabel!
+    private var lblLastLogin: UILabel!
     private var btnLogin: UIButton!
     private var btnLogout: UIButton!
     private var btnSettings: UIButton!
@@ -25,7 +25,13 @@ class MainView: UIView {
         btnLogout.frame = CGRect(x: 0, y: 10, width: logoutSize.width, height: logoutSize.height)
         btnLogin.frame = CGRect(x: 0, y: 10, width: loginSize.width, height: loginSize.height)
         lblLastLogin.frame = CGRect(x: 0, y: 10, width: 0, height: lblLastLoginSize.height)
-        self.setLayouts()
+        self.btnSettingsLayout()
+        self.btnLogoutLayout()
+        self.btnLoginLayout()
+        self.lblLastLoginLayout()
+        self.frame.size.width = superview!.frame.width
+        self.center.x = superview!.center.x
+        self.center.y = superview!.center.y
     }
     
     override init(frame: CGRect) {
@@ -50,18 +56,8 @@ class MainView: UIView {
         super.init(coder: coder)
     }
     
-    func setLayouts() -> Void {
-        self.btnSettingsLayout()
-        self.btnLogoutLayout()
-        self.btnLoginLayout()
-        self.lblLastLoginLayout()
-        self.frame.size.width = superview!.frame.width
-        self.center.x = superview!.center.x
-        self.center.y = superview!.center.y
-    }
-    
-    private func addLabel(text: String) -> PaddingLabel {
-        let label = PaddingLabel()
+    private func addLabel(text: String) -> UILabel {
+        let label = UILabel()
         label.text = text
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
