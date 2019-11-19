@@ -53,6 +53,10 @@
 		756D5B0A237E9BE2006FB222 /* Assignment2ShinHiroshiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assignment2ShinHiroshiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		756D5B0E237E9BE2006FB222 /* Assignment2ShinHiroshiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment2ShinHiroshiUITests.swift; sourceTree = "<group>"; };
 		756D5B10237E9BE2006FB222 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		756D5B1C237EA036006FB222 /* MainView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView1.swift; sourceTree = "<group>"; };
+>>>>>>> c581c7e1de48d2326660f9346053463e33e1de23
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,11 +84,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< HEAD
 		754BF7252383D23300E0FABE /* ui */ = {
 			isa = PBXGroup;
 			children = (
 				754BF7262383D24400E0FABE /* MainView.swift */,
 				754BF7282383D3A700E0FABE /* PaddingLabel.swift */,
+=======
+		754BF71F2383C43400E0FABE /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				756D5B1C237EA036006FB222 /* MainView1.swift */,
+				754BF7202383C45000E0FABE /* PaddingLabel.swift */,
+>>>>>>> c581c7e1de48d2326660f9346053463e33e1de23
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -112,7 +124,11 @@
 		756D5AEB237E9BDF006FB222 /* Assignment2ShinHiroshi */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				754BF7252383D23300E0FABE /* ui */,
+=======
+				754BF71F2383C43400E0FABE /* ui */,
+>>>>>>> c581c7e1de48d2326660f9346053463e33e1de23
 				756D5AEC237E9BDF006FB222 /* AppDelegate.swift */,
 				756D5AEE237E9BDF006FB222 /* SceneDelegate.swift */,
 				756D5AF0237E9BDF006FB222 /* ViewController.swift */,
@@ -275,6 +291,11 @@
 			files = (
 				754BF7292383D3A700E0FABE /* PaddingLabel.swift in Sources */,
 				756D5AF1237E9BDF006FB222 /* ViewController.swift in Sources */,
+<<<<<<< HEAD
+=======
+				754BF7212383C45000E0FABE /* PaddingLabel.swift in Sources */,
+				756D5B1D237EA036006FB222 /* MainView1.swift in Sources */,
+>>>>>>> c581c7e1de48d2326660f9346053463e33e1de23
 				756D5AED237E9BDF006FB222 /* AppDelegate.swift in Sources */,
 				754BF7272383D24400E0FABE /* MainView.swift in Sources */,
 				756D5AEF237E9BDF006FB222 /* SceneDelegate.swift in Sources */,
