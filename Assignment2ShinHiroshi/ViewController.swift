@@ -19,7 +19,8 @@ class ViewController: UIViewController {
                 x: 0,
                 y: self.view.center.y,
                 width: self.view.frame.width,
-                height: 300
+//                width: mainSize.width,
+                height: 150
         ))
         self.view.addSubview(mainView)
     }
