@@ -10,11 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var mainView: MainView!
+    var mainView: MainView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.setView()
+        mainView = MainView(
+            frame: CGRect(
+                x: 0,
+                y: self.view.center.y,
+                width: self.view.frame.width,
+                height: 300
+        ))
+        self.view.addSubview(mainView)
     }
     
 }

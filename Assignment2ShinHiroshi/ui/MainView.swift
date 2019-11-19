@@ -2,21 +2,14 @@
 //  MainView.swift
 //  Assignment2ShinHiroshi
 //
-//  Created by 沈洋 on 2019/11/15.
+//  Created by 沈洋 on 2019/11/19.
 //  Copyright © 2019 JFX. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class MainView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     private var lblLastLogin: PaddingLabel!
     private var btnLogin: UIButton!
     private var btnLogout: UIButton!
@@ -24,10 +17,20 @@ class MainView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        //各View位置調整
+        self.btnSettingsLayout()
+        self.btnLogoutLayout()
+        self.btnLoginLayout()
+        self.lblLastLoginLayout()
+        self.frame.size.width = superview!.frame.width
+        self.center.x = superview!.center.x
+        self.center.y = superview!.center.y
     }
     
-    func setView() -> Void {
+    override init(frame: CGRect) {
         //各View初期化
+        super.init(frame: frame)
+        self.frame = frame
         lblLastLogin = addLabel(text: "前回ログイン日時　2019/11/07 12:00:00")
         btnLogin = addButton(title: "ログイン")
         btnLogout = addButton(title: "ログアウト")
@@ -40,11 +43,10 @@ class MainView: UIView {
         //押下機能追加
         btnLogin.addTarget(self, action: #selector(login(_:)), for: .touchUpInside)
         btnLogout.addTarget(self, action: #selector(logout(_:)), for: .touchUpInside)
-        //Styleを調整
-        self.btnSettingsLayout()
-        self.btnLogoutLayout()
-        self.btnLoginLayout()
-        self.lblLastLoginLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
     private func addLabel(text: String) -> PaddingLabel {
@@ -111,22 +113,5 @@ class MainView: UIView {
         btnLogin.frame.origin.x = btnSettings.frame.origin.x - (btnLogin.frame.width + 10)
         lblLastLogin.frame.size.width = btnLogout.frame.origin.x - lblLastLogin.frame.origin.x
     }
-}
-
-class PaddingLabel: UILabel {
-
-    @IBInspectable var padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30)
-
-    override func drawText(in rect: CGRect) {
-        let newRect = rect.inset(by: padding)
-        super.drawText(in: newRect)
-    }
-
-    override var intrinsicContentSize: CGSize {
-        var contentSize = super.intrinsicContentSize
-        contentSize.height += padding.top + padding.bottom
-        contentSize.width += padding.left + padding.right
-        return contentSize
-    }
-
+    
 }
