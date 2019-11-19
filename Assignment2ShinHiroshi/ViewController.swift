@@ -24,5 +24,8 @@ class ViewController: UIViewController {
         self.view.addSubview(mainView)
     }
     
+    override func viewDidLayoutSubviews() {
+        mainView.setLayouts()
+    }
 }
 

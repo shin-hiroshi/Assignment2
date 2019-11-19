@@ -15,18 +15,6 @@ class MainView: UIView {
     private var btnLogout: UIButton!
     private var btnSettings: UIButton!
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        //各View位置調整
-        self.btnSettingsLayout()
-        self.btnLogoutLayout()
-        self.btnLoginLayout()
-        self.lblLastLoginLayout()
-        self.frame.size.width = superview!.frame.width
-        self.center.x = superview!.center.x
-        self.center.y = superview!.center.y
-    }
-    
     override init(frame: CGRect) {
         //各View初期化
         super.init(frame: frame)
@@ -47,6 +35,16 @@ class MainView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    func setLayouts() -> Void {
+        self.btnSettingsLayout()
+        self.btnLogoutLayout()
+        self.btnLoginLayout()
+        self.lblLastLoginLayout()
+        self.frame.size.width = superview!.frame.width
+        self.center.x = superview!.center.x
+        self.center.y = superview!.center.y
     }
     
     private func addLabel(text: String) -> PaddingLabel {
@@ -79,7 +77,12 @@ class MainView: UIView {
     }
 
     private func btnLoginLayout() {
-        btnLogin.frame.origin.x = btnLogout.frame.origin.x - (btnLogin.frame.width + 10)
+        if btnLogout.isHidden {
+            btnLogin.frame.origin.x = btnSettings.frame.origin.x - (btnLogin.frame.width + 10)
+        } else {
+            btnLogin.frame.origin.x = btnLogout.frame.origin.x - (btnLogin.frame.width + 10)
+        }
+        
         btnLogin.frame.origin.y = 10
         btnLogin.frame.size.height = self.frame.height - 20
     }
@@ -101,7 +104,7 @@ class MainView: UIView {
         if btnLogout.isHidden {
             btnLogout.isHidden = false
         }
-        btnLogin.frame.origin.x = btnLogout.frame.origin.x
+//        btnLogin.frame.origin.x = btnLogout.frame.origin.x
         lblLastLogin.frame.size.width = btnLogout.frame.origin.x - lblLastLogin.frame.origin.x
     }
     
