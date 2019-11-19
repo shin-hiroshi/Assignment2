@@ -21,14 +21,10 @@ class MainView: UIView {
         let logoutSize = btnSettings.sizeThatFits(CGSize.zero)
         let loginSize = btnSettings.sizeThatFits(CGSize.zero)
         let lblLastLoginSize = btnSettings.sizeThatFits(CGSize.zero)
-        btnSettings.frame = CGRect(x: 0, y: 10, width: settingSize.width, height: settingSize.height)
-        btnLogout.frame = CGRect(x: 0, y: 10, width: logoutSize.width, height: logoutSize.height)
-        btnLogin.frame = CGRect(x: 0, y: 10, width: loginSize.width, height: loginSize.height)
-        lblLastLogin.frame = CGRect(x: 0, y: 10, width: 0, height: lblLastLoginSize.height)
-        self.btnSettingsLayout()
-        self.btnLogoutLayout()
-        self.btnLoginLayout()
-        self.lblLastLoginLayout()
+        btnSettings.frame = CGRect(x: self.frame.width - settingSize.width - 10, y: 10, width: settingSize.width, height: settingSize.height)
+        btnLogout.frame = CGRect(x: btnSettings.frame.origin.x - logoutSize.width - 10, y: 10, width: logoutSize.width, height: logoutSize.height)
+        btnLogin.frame = CGRect(x: btnLogout.frame.origin.x - loginSize.width - 10, y: 10, width: loginSize.width, height: loginSize.height)
+        lblLastLogin.frame = CGRect(x: 10, y: 10, width: btnLogin.frame.origin.x - 20, height: lblLastLoginSize.height)
         self.frame.size.width = superview!.frame.width
         self.center.x = superview!.center.x
         self.center.y = superview!.center.y
@@ -75,33 +71,6 @@ class MainView: UIView {
         )
         button.titleLabel?.font = .systemFont(ofSize: 16)
         return button
-    }
-
-    private func lblLastLoginLayout() {
-        lblLastLogin.frame.origin.x = 10
-        lblLastLogin.frame.origin.y = 10
-        lblLastLogin.frame.size.width = btnLogin.frame.origin.x - 10
-        lblLastLogin.frame.size.height = self.frame.height - 20
-    }
-
-    private func btnLoginLayout() {
-        if btnLogout.isHidden {
-            btnLogin.frame.origin.x = btnSettings.frame.origin.x - (btnLogin.frame.width + 10)
-        } else {
-            btnLogin.frame.origin.x = btnLogout.frame.origin.x - (btnLogin.frame.width + 10)
-        }
-        btnLogin.frame.size.height = self.frame.height - 20
-    }
-
-    private func btnLogoutLayout() {
-        btnLogout.frame.origin.x = btnSettings.frame.origin.x - (btnLogout.frame.width + 10)
-        btnLogout.frame.size.height = self.frame.height - 20
-    }
-
-    private func btnSettingsLayout() {
-        btnSettings.frame.origin.x = self.frame.width - (btnSettings.frame.width + 10)
-//        btnSettings.frame.origin.y = 10
-        btnSettings.frame.size.height = self.frame.height - 20
     }
     
     @IBAction func login(_ sender: Any) {
