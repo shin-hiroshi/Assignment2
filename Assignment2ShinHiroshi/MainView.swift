@@ -17,7 +17,7 @@ class MainView: UIView {
         // Drawing code
     }
     */
-    private var lblLastLogin: UILabel!
+    private var lblLastLogin: PaddingLabel!
     private var btnLogin: UIButton!
     private var btnLogout: UIButton!
     private var btnSettings: UIButton!
@@ -47,9 +47,11 @@ class MainView: UIView {
         self.lblLastLoginLayout()
     }
     
-    private func addLabel(text: String) -> UILabel {
-        let label = UILabel()
+    private func addLabel(text: String) -> PaddingLabel {
+        let label = PaddingLabel()
         label.text = text
+        label.numberOfLines = 3
+        label.lineBreakMode = .byWordWrapping
         label.textAlignment = NSTextAlignment.left
         label.frame.size.height = self.frame.height - 20
         label.font = .systemFont(ofSize: 16)
@@ -106,4 +108,22 @@ class MainView: UIView {
         btnLogin.frame.origin.x = btnSettings.frame.origin.x - (btnLogin.frame.width + 10)
         lblLastLogin.frame.size.width = btnLogout.frame.origin.x - lblLastLogin.frame.origin.x
     }
+}
+
+class PaddingLabel: UILabel {
+
+    @IBInspectable var padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30)
+
+    override func drawText(in rect: CGRect) {
+        let newRect = rect.inset(by: padding)
+        super.drawText(in: newRect)
+    }
+
+    override var intrinsicContentSize: CGSize {
+        var contentSize = super.intrinsicContentSize
+        contentSize.height += padding.top + padding.bottom
+        contentSize.width += padding.left + padding.right
+        return contentSize
+    }
+
 }
