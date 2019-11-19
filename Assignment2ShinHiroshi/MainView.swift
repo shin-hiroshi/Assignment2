@@ -79,16 +79,19 @@ class MainView: UIView {
     private func btnLoginLayout() {
         btnLogin.frame.origin.x = btnLogout.frame.origin.x - (btnLogin.frame.width + 10)
         btnLogin.frame.origin.y = 10
+        btnLogin.frame.size.height = self.frame.height - 20
     }
 
     private func btnLogoutLayout() {
         btnLogout.frame.origin.x = btnSettings.frame.origin.x - (btnLogout.frame.width + 10)
         btnLogout.frame.origin.y = 10
+        btnLogout.frame.size.height = self.frame.height - 20
     }
 
     private func btnSettingsLayout() {
         btnSettings.frame.origin.x = self.frame.width - (btnSettings.frame.width + 10)
         btnSettings.frame.origin.y = 10
+        btnSettings.frame.size.height = self.frame.height - 20
     }
     
     @IBAction func login(_ sender: Any) {
