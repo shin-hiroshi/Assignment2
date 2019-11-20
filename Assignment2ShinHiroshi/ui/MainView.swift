@@ -24,7 +24,7 @@ class MainView: UIView {
                                    y: 10,
                                    width: settingSize.width,
                                    height: self.frame.height - 20)
-        btnLogout.frame = CGRect(x: btnSettings.frame.origin.x - logoutSize.width,
+        btnLogout.frame = CGRect(x: btnSettings.frame.origin.x - logoutSize.width - 10,
                                  y: 10,
                                  width: logoutSize.width,
                                  height: self.frame.height - 20)
@@ -52,26 +52,34 @@ class MainView: UIView {
                                         width: btnLogin.frame.origin.x - 20,
                                         height: self.frame.height - 20)
         }
-        
-//        self.frame.size.width = superview!.frame.width
-//        self.center.x = superview!.center.x
-//        self.center.y = superview!.center.y
     }
     
     override init(frame: CGRect) {
         //各View初期化
         super.init(frame: frame)
         self.frame = frame
-        self.setLabel(label: lblLastLogin, text: "前回ログイン日時　2019/11/07 12:00:00")
-        self.setButton(button: btnLogin, title: "ログイン")
-        self.setButton(button: btnLogout, title: "ログアウト")
-        self.setButton(button: btnSettings, title: "各種設定")
+        lblLastLogin.text = "前回ログイン日時　2019/11/07 12:00:00"
+        lblLastLogin.numberOfLines = 0
+        lblLastLogin.lineBreakMode = .byWordWrapping
+        lblLastLogin.textAlignment = NSTextAlignment.left
+        lblLastLogin.font = .systemFont(ofSize: 16)
+        btnLogin.setTitle("ログイン", for: .normal)
+        btnLogin.setTitleColor(.blue, for: .normal)
+        btnLogin.titleLabel?.font = .systemFont(ofSize: 16)
+        btnLogout.setTitle("ログアウト", for: .normal)
+        btnLogout.setTitleColor(.blue, for: .normal)
+        btnLogout.titleLabel?.font = .systemFont(ofSize: 16)
         btnLogout.isHidden = true
+        btnSettings.setTitle("各種設定", for: .normal)
+        btnSettings.setTitleColor(.blue, for: .normal)
+        btnSettings.titleLabel?.font = .systemFont(ofSize: 16)
+        
         //MainViewに追加
         self.addSubview(btnSettings)
         self.addSubview(btnLogin)
         self.addSubview(btnLogout)
         self.addSubview(lblLastLogin)
+        
         //押下機能追加
         btnLogin.addTarget(self, action: #selector(login(_:)), for: .touchUpInside)
         btnLogout.addTarget(self, action: #selector(logout(_:)), for: .touchUpInside)
@@ -79,23 +87,6 @@ class MainView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-    
-    private func setLabel(label: UILabel, text: String) {
-        label.text = text
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.textAlignment = NSTextAlignment.left
-        label.font = .systemFont(ofSize: 16)
-    }
-    
-    private func setButton(button: UIButton, title: String) {
-        button.setTitle(title, for: .normal)
-        button.setTitleColor(
-            .blue,
-            for: .normal
-        )
-        button.titleLabel?.font = .systemFont(ofSize: 16)
     }
     
     @IBAction func login(_ sender: Any) {
