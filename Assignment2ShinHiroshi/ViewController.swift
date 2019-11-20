@@ -14,13 +14,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView = MainView(
-            frame: CGRect(
-                x: 0,
-                y: self.view.center.y,
-                width: self.view.frame.width,
-                height: 150
-        ))
+        mainView = MainView(frame: CGRect(x: 0,
+                                          y: self.view.center.y,
+                                          width: self.view.frame.width,
+                                          height: 150))
         self.view.addSubview(mainView)
     }
     

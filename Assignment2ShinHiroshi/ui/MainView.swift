@@ -19,7 +19,10 @@ class MainView: UIView {
         super.layoutSubviews()
         let settingSize = btnSettings.sizeThatFits(CGSize.zero)
         let loginSize = btnLogin.sizeThatFits(CGSize.zero)
-        btnSettings.frame = CGRect(x: self.frame.width - settingSize.width - 10, y: 10, width: settingSize.width, height: self.frame.height - 20)
+        btnSettings.frame = CGRect(x: self.frame.width - settingSize.width - 10,
+                                   y: 10,
+                                   width: settingSize.width,
+                                   height: self.frame.height - 20)
         
         if btnLogout == nil || btnLogout.isHidden {
             btnLogin.frame = CGRect(x: btnSettings.frame.origin.x - loginSize.width - 10,
