@@ -57,9 +57,9 @@ class MainView: UIView {
         //各View初期化
         super.init(frame: frame)
         self.frame = frame
-        lblLastLogin = addLabel(text: "前回ログイン日時　2019/11/07 12:00:00")
-        btnLogin = addButton(title: "ログイン")
-        btnSettings = addButton(title: "各種設定")
+        lblLastLogin = createLabel(text: "前回ログイン日時　2019/11/07 12:00:00")
+        btnLogin = createButton(title: "ログイン")
+        btnSettings = createButton(title: "各種設定")
         //MainViewに追加
         self.addSubview(btnSettings)
 //        self.addSubview(btnLogout)
@@ -73,7 +73,7 @@ class MainView: UIView {
         super.init(coder: coder)
     }
     
-    private func addLabel(text: String) -> UILabel {
+    private func createLabel(text: String) -> UILabel {
         let label = UILabel()
         
         label.text = text
@@ -84,7 +84,7 @@ class MainView: UIView {
         return label
     }
     
-    private func addButton(title: String) -> UIButton {
+    private func createButton(title: String) -> UIButton {
         let button = UIButton()
         
         button.setTitle(title, for: .normal)
@@ -100,7 +100,7 @@ class MainView: UIView {
         btnLogin.isHidden = true
         
         if btnLogout == nil {
-            btnLogout = addButton(title: "ログアウト")
+            btnLogout = createButton(title: "ログアウト")
             self.addSubview(btnLogout)
             btnLogout.addTarget(self, action: #selector(logout(_:)), for: .touchUpInside)
             
