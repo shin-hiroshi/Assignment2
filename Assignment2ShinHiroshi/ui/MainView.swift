@@ -96,12 +96,6 @@ class MainView: UIView {
         return button
     }
     
-    private func lblLastLoginLayout() {
-        lblLastLogin.frame.origin.x = 10
-        lblLastLogin.frame.origin.y = 10
-        lblLastLogin.frame.size.width = btnLogin.frame.origin.x - 10
-    }
-    
     @IBAction func login(_ sender: Any) {
         btnLogin.isHidden = true
         
