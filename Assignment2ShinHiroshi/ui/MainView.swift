@@ -17,19 +17,33 @@ class MainView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        let settingSize = btnSettings.sizeThatFits(CGSize.zero)
-//        let logoutSize = btnSettings.sizeThatFits(CGSize.zero)
-//        let loginSize = btnSettings.sizeThatFits(CGSize.zero)
-////        let lblLastLoginSize = btnSettings.sizeThatFits(CGSize.zero)
-//        btnSettings.frame = CGRect(x: self.frame.width - settingSize.width - 10, y: 10, width: settingSize.width, height: self.frame.height - 20)
-//        btnLogout.frame = CGRect(x: btnSettings.frame.origin.x - logoutSize.width - 10, y: 10, width: logoutSize.width, height: self.frame.height - 20)
-//        btnLogin.frame = CGRect(x: btnLogout.frame.origin.x - loginSize.width - 10, y: 10, width: loginSize.width, height: self.frame.height - 20)
-//        lblLastLogin.frame = CGRect(x: 10, y: 10, width: btnLogin.frame.origin.x - 20, height: self.frame.height - 20)
+        let settingSize = btnSettings.sizeThatFits(CGSize.zero)
+        let loginSize = btnLogin.sizeThatFits(CGSize.zero)
+        btnSettings.frame = CGRect(x: self.frame.width - settingSize.width - 10, y: 10, width: settingSize.width, height: self.frame.height - 20)
         
-        self.btnSettingsLayout()
-        self.btnLoginLayout()
-        self.btnLoginLayout()
-        self.lblLastLoginLayout()
+        if btnLogout == nil || btnLogout.isHidden {
+            btnLogin.frame = CGRect(x: btnSettings.frame.origin.x - loginSize.width - 10,
+                                    y: 10,
+                                    width: loginSize.width,
+                                    height: self.frame.height - 20)
+        } else {
+            btnLogin.frame = CGRect(x: btnLogout.frame.origin.x - loginSize.width - 10,
+                                    y: 10,
+                                    width: loginSize.width,
+                                    height: self.frame.height - 20)
+        }
+        
+        if btnLogin.isHidden {
+            lblLastLogin.frame = CGRect(x: 10,
+                                        y: 10,
+                                        width: btnLogout.frame.origin.x - 20,
+                                        height: self.frame.height - 20)
+        } else {
+            lblLastLogin.frame = CGRect(x: 10,
+                                        y: 10,
+                                        width: btnLogin.frame.origin.x - 20,
+                                        height: self.frame.height - 20)
+        }
         
         self.frame.size.width = superview!.frame.width
         self.center.x = superview!.center.x
@@ -42,16 +56,14 @@ class MainView: UIView {
         self.frame = frame
         lblLastLogin = addLabel(text: "前回ログイン日時　2019/11/07 12:00:00")
         btnLogin = addButton(title: "ログイン")
-        btnLogout = addButton(title: "ログアウト")
         btnSettings = addButton(title: "各種設定")
         //MainViewに追加
         self.addSubview(btnSettings)
-        self.addSubview(btnLogout)
+//        self.addSubview(btnLogout)
         self.addSubview(btnLogin)
         self.addSubview(lblLastLogin)
         //押下機能追加
         btnLogin.addTarget(self, action: #selector(login(_:)), for: .touchUpInside)
-        btnLogout.addTarget(self, action: #selector(logout(_:)), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -61,8 +73,6 @@ class MainView: UIView {
     private func addLabel(text: String) -> UILabel {
         let label = UILabel()
         
-        label.frame.origin.y = 10
-        label.frame.size.height = self.frame.height - 20
         label.text = text
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -73,17 +83,13 @@ class MainView: UIView {
     
     private func addButton(title: String) -> UIButton {
         let button = UIButton()
-        let btnSize = button.sizeThatFits(CGSize.zero)
         
-        button.frame.size.height = self.frame.height - 20
         button.setTitle(title, for: .normal)
         button.setTitleColor(
             .blue,
             for: .normal
         )
         button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.frame.size.width = btnSize.width
-        button.frame.origin.y = 10
         return button
     }
     
@@ -93,41 +99,27 @@ class MainView: UIView {
         lblLastLogin.frame.size.width = btnLogin.frame.origin.x - 10
     }
     
-    private func btnLoginLayout() {
-            if btnLogout.isHidden {
-                btnLogin.frame.origin.x = btnSettings.frame.origin.x - (btnLogin.frame.width + 10)
-            } else {
-                btnLogin.frame.origin.x = btnLogout.frame.origin.x - (btnLogin.frame.width + 10)
-            }
-//            btnLogin.frame.size.height = self.frame.height - 20
-        }
-
-    private func btnLogoutLayout() {
-        btnLogout.frame.origin.x = btnSettings.frame.origin.x - (btnLogout.frame.width + 10)
-//            btnLogout.frame.size.height = self.frame.height - 20
-    }
-
-    private func btnSettingsLayout() {
-        btnSettings.frame.origin.x = self.frame.width - (btnSettings.frame.width + 10)
-//            btnSettings.frame.size.height = self.frame.height - 20
-    }
-    
     @IBAction func login(_ sender: Any) {
         btnLogin.isHidden = true
-        if btnLogout.isHidden {
+        
+        if btnLogout == nil {
+            btnLogout = addButton(title: "ログアウト")
+            self.addSubview(btnLogout)
+            btnLogout.addTarget(self, action: #selector(logout(_:)), for: .touchUpInside)
+            
+            let logoutSize = btnLogout.sizeThatFits(CGSize.zero)
+            btnLogout.frame = CGRect(x: btnSettings.frame.origin.x - logoutSize.width - 10, y: 10, width: logoutSize.width, height: self.frame.height - 20)
+        } else {
             btnLogout.isHidden = false
         }
-        btnLogin.frame.origin.x = btnLogout.frame.origin.x
-        lblLastLogin.frame.size.width = btnLogout.frame.origin.x - lblLastLogin.frame.origin.x
+        
+        self.setNeedsLayout()
     }
     
     @IBAction func logout(_ sender: Any) {
         btnLogout.isHidden = true
-        if btnLogin.isHidden {
-            btnLogin.isHidden = false
-        }
-        btnLogin.frame.origin.x = btnSettings.frame.origin.x - btnLogin.frame.width - 10
-        lblLastLogin.frame.size.width = btnLogout.frame.origin.x - lblLastLogin.frame.origin.x
+        btnLogin.isHidden = false
+        self.setNeedsLayout()
     }
     
 }
