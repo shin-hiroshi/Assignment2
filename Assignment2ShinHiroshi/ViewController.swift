@@ -20,9 +20,10 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mainView.frame = CGRect(x: 0,
-                                y: self.view.center.y,
+                                y: 0,
                                 width: self.view.frame.width,
                                 height: 150)
+        mainView.center.y = self.view.center.y
     }
 }
 
