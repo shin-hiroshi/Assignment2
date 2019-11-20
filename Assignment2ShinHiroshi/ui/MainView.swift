@@ -53,9 +53,9 @@ class MainView: UIView {
                                         height: self.frame.height - 20)
         }
         
-        self.frame.size.width = superview!.frame.width
-        self.center.x = superview!.center.x
-        self.center.y = superview!.center.y
+//        self.frame.size.width = superview!.frame.width
+//        self.center.x = superview!.center.x
+//        self.center.y = superview!.center.y
     }
     
     override init(frame: CGRect) {
