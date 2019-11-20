@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        mainView.layoutSubviews()
         mainView.frame.size.width = self.view.frame.width
         mainView.center.y = self.view.center.y
     }
