@@ -17,40 +17,40 @@ class MainView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let settingSize = btnSettings.sizeThatFits(CGSize.zero)
-        let loginSize = btnLogin.sizeThatFits(CGSize.zero)
-        let logoutSize = btnLogout.sizeThatFits(CGSize.zero)
-        btnSettings.frame = CGRect(x: self.frame.width - settingSize.width - 10,
-                                   y: 10,
-                                   width: settingSize.width,
-                                   height: self.frame.height - 20)
-        btnLogout.frame = CGRect(x: btnSettings.frame.origin.x - logoutSize.width - 10,
-                                 y: 10,
-                                 width: logoutSize.width,
-                                 height: self.frame.height - 20)
+        //文字を収まる横幅
+        let settingWidth = btnSettings.sizeThatFits(CGSize.zero).width
+        let loginWidth = btnLogin.sizeThatFits(CGSize.zero).width
+        let logoutWidth = btnLogout.sizeThatFits(CGSize.zero).width
+        
+        //frameの共通引数
+        let margin = CGFloat(10)
+        let height = self.frame.height - margin * 2
+        
+        //frameを設定
+        btnSettings.frame = CGRect(x: self.frame.width - settingWidth - margin,
+                                   y: margin,
+                                   width: settingWidth,
+                                   height: height)
+        btnLogout.frame = CGRect(x: btnSettings.frame.origin.x - loginWidth - margin,
+                                 y: margin,
+                                 width: loginWidth,
+                                 height: height)
+        btnLogin.frame = CGRect(x: btnLogout.frame.origin.x - logoutWidth - margin,
+                                y: margin,
+                                width: loginWidth,
+                                height: height)
         
         if btnLogout.isHidden {
-            btnLogin.frame = CGRect(x: btnSettings.frame.origin.x - loginSize.width - 10,
-                                    y: 10,
-                                    width: loginSize.width,
-                                    height: self.frame.height - 20)
-        } else {
-            btnLogin.frame = CGRect(x: btnLogout.frame.origin.x - loginSize.width - 10,
-                                    y: 10,
-                                    width: loginSize.width,
-                                    height: self.frame.height - 20)
+            btnLogin.frame.origin.x = btnSettings.frame.origin.x - logoutWidth - margin
         }
         
+        lblLastLogin.frame = CGRect(x: margin,
+                                    y: margin,
+                                    width: btnLogin.frame.origin.x - 20,
+                                    height: height)
+        
         if btnLogin.isHidden {
-            lblLastLogin.frame = CGRect(x: 10,
-                                        y: 10,
-                                        width: btnLogout.frame.origin.x - 20,
-                                        height: self.frame.height - 20)
-        } else {
-            lblLastLogin.frame = CGRect(x: 10,
-                                        y: 10,
-                                        width: btnLogin.frame.origin.x - 20,
-                                        height: self.frame.height - 20)
+            lblLastLogin.frame.size.width = btnLogout.frame.origin.x - 20
         }
     }
     
