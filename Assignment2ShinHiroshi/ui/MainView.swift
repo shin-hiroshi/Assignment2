@@ -10,21 +10,26 @@ import Foundation
 import UIKit
 
 class MainView: UIView {
-    private var lblLastLogin: UILabel!
-    private var btnLogin: UIButton!
-    private var btnLogout: UIButton!
-    private var btnSettings: UIButton!
+    private let lblLastLogin = UILabel()
+    private let btnLogin = UIButton()
+    private let btnLogout = UIButton()
+    private let btnSettings = UIButton()
     
     override func layoutSubviews() {
         super.layoutSubviews()
         let settingSize = btnSettings.sizeThatFits(CGSize.zero)
         let loginSize = btnLogin.sizeThatFits(CGSize.zero)
+        let logoutSize = btnLogout.sizeThatFits(CGSize.zero)
         btnSettings.frame = CGRect(x: self.frame.width - settingSize.width - 10,
                                    y: 10,
                                    width: settingSize.width,
                                    height: self.frame.height - 20)
+        btnLogout.frame = CGRect(x: btnSettings.frame.origin.x - logoutSize.width,
+                                 y: 10,
+                                 width: logoutSize.width,
+                                 height: self.frame.height - 20)
         
-        if btnLogout == nil || btnLogout.isHidden {
+        if btnLogout.isHidden {
             btnLogin.frame = CGRect(x: btnSettings.frame.origin.x - loginSize.width - 10,
                                     y: 10,
                                     width: loginSize.width,
@@ -57,59 +62,45 @@ class MainView: UIView {
         //各View初期化
         super.init(frame: frame)
         self.frame = frame
-        lblLastLogin = createLabel(text: "前回ログイン日時　2019/11/07 12:00:00")
-        btnLogin = createButton(title: "ログイン")
-        btnSettings = createButton(title: "各種設定")
+        self.setLabel(label: lblLastLogin, text: "前回ログイン日時　2019/11/07 12:00:00")
+        self.setButton(button: btnLogin, title: "ログイン")
+        self.setButton(button: btnLogout, title: "ログアウト")
+        self.setButton(button: btnSettings, title: "各種設定")
+        btnLogout.isHidden = true
         //MainViewに追加
         self.addSubview(btnSettings)
-//        self.addSubview(btnLogout)
         self.addSubview(btnLogin)
+        self.addSubview(btnLogout)
         self.addSubview(lblLastLogin)
         //押下機能追加
         btnLogin.addTarget(self, action: #selector(login(_:)), for: .touchUpInside)
+        btnLogout.addTarget(self, action: #selector(logout(_:)), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    private func createLabel(text: String) -> UILabel {
-        let label = UILabel()
-        
+    private func setLabel(label: UILabel, text: String) {
         label.text = text
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = NSTextAlignment.left
         label.font = .systemFont(ofSize: 16)
-        return label
     }
     
-    private func createButton(title: String) -> UIButton {
-        let button = UIButton()
-        
+    private func setButton(button: UIButton, title: String) {
         button.setTitle(title, for: .normal)
         button.setTitleColor(
             .blue,
             for: .normal
         )
         button.titleLabel?.font = .systemFont(ofSize: 16)
-        return button
     }
     
     @IBAction func login(_ sender: Any) {
         btnLogin.isHidden = true
-        
-        if btnLogout == nil {
-            btnLogout = createButton(title: "ログアウト")
-            self.addSubview(btnLogout)
-            btnLogout.addTarget(self, action: #selector(logout(_:)), for: .touchUpInside)
-            
-            let logoutSize = btnLogout.sizeThatFits(CGSize.zero)
-            btnLogout.frame = CGRect(x: btnSettings.frame.origin.x - logoutSize.width - 10, y: 10, width: logoutSize.width, height: self.frame.height - 20)
-        } else {
-            btnLogout.isHidden = false
-        }
-        
+        btnLogout.isHidden = false
         self.setNeedsLayout()
     }
     
