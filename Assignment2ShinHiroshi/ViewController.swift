@@ -10,21 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var mainView: MainView!
+    private let mainView = MainView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView = MainView(frame: CGRect(x: 0,
-                                          y: self.view.center.y,
-                                          width: self.view.frame.width,
-                                          height: 150))
+        mainView.frame = CGRect(x: 0,
+                                y: self.view.center.y,
+                                width: self.view.frame.width,
+                                height: 150)
         self.view.addSubview(mainView)
     }
     
     override func viewDidLayoutSubviews() {
         mainView.layoutSubviews()
         mainView.frame.size.width = self.view.frame.width
-        mainView.center.x = self.view.center.x
         mainView.center.y = self.view.center.y
     }
 }
