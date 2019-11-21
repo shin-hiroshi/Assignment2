@@ -21,10 +21,6 @@ class MainView: UIView {
         let settingWidth = btnSettings.sizeThatFits(CGSize.zero).width
         let loginWidth = btnLogin.sizeThatFits(CGSize.zero).width
         let logoutWidth = btnLogout.sizeThatFits(CGSize.zero).width
-//        let settingSize = btnSettings.sizeThatFits(CGSize.zero)
-//        let loginSize = btnLogin.sizeThatFits(CGSize.zero)
-//        let logoutSize = btnLogout.sizeThatFits(CGSize.zero)
-//        let lblLastLoginSize = lblLastLogin.sizeThatFits(CGSize.zero)
         
         //frameの共通引数
         let margin = CGFloat(10)
@@ -57,18 +53,6 @@ class MainView: UIView {
                                     y: margin,
                                     width: position - 10,
                                     height: height)
-        
-//        let sizes = [settingSize, logoutSize, loginSize, lblLastLoginSize]
-//        let views = [btnSettings, btnLogout, btnLogin, lblLastLogin]
-//
-//        for (index, size) in sizes.enumerated() {
-//            width -= (margin + size.width)
-//            let view = views[index]
-//            if view.isHidden == false {
-//                view.frame = CGRect(x: width, y: margin, width: size.width, height: height)
-//            }
-//
-//        }
     }
     
     override init(frame: CGRect) {
