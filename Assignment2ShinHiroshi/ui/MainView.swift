@@ -21,37 +21,54 @@ class MainView: UIView {
         let settingWidth = btnSettings.sizeThatFits(CGSize.zero).width
         let loginWidth = btnLogin.sizeThatFits(CGSize.zero).width
         let logoutWidth = btnLogout.sizeThatFits(CGSize.zero).width
+//        let settingSize = btnSettings.sizeThatFits(CGSize.zero)
+//        let loginSize = btnLogin.sizeThatFits(CGSize.zero)
+//        let logoutSize = btnLogout.sizeThatFits(CGSize.zero)
+//        let lblLastLoginSize = lblLastLogin.sizeThatFits(CGSize.zero)
         
         //frameの共通引数
         let margin = CGFloat(10)
         let height = self.frame.height - margin * 2
+        var position = self.frame.width
         
         //frameを設定
-        btnSettings.frame = CGRect(x: self.frame.width - settingWidth - margin,
+        position -= (settingWidth + margin)
+        btnSettings.frame = CGRect(x: position,
                                    y: margin,
                                    width: settingWidth,
                                    height: height)
-        btnLogout.frame = CGRect(x: btnSettings.frame.origin.x - loginWidth - margin,
-                                 y: margin,
-                                 width: loginWidth,
-                                 height: height)
-        btnLogin.frame = CGRect(x: btnLogout.frame.origin.x - logoutWidth - margin,
-                                y: margin,
-                                width: loginWidth,
-                                height: height)
-        
-        if btnLogout.isHidden {
-            btnLogin.frame.origin.x = btnSettings.frame.origin.x - logoutWidth - margin
+        if btnLogout.isHidden == false {
+            position -= (logoutWidth + margin)
+            btnLogout.frame = CGRect(x: position,
+                                     y: margin,
+                                     width: logoutWidth,
+                                     height: height)
         }
-        
+        if btnLogin.isHidden == false {
+            position -= (loginWidth + margin)
+            btnLogin.frame = CGRect(x: position,
+                                    y: margin,
+                                    width: loginWidth,
+                                    height: height)
+        }
+
+        position -= 10
         lblLastLogin.frame = CGRect(x: margin,
                                     y: margin,
-                                    width: btnLogin.frame.origin.x - 20,
+                                    width: position - 10,
                                     height: height)
         
-        if btnLogin.isHidden {
-            lblLastLogin.frame.size.width = btnLogout.frame.origin.x - 20
-        }
+//        let sizes = [settingSize, logoutSize, loginSize, lblLastLoginSize]
+//        let views = [btnSettings, btnLogout, btnLogin, lblLastLogin]
+//
+//        for (index, size) in sizes.enumerated() {
+//            width -= (margin + size.width)
+//            let view = views[index]
+//            if view.isHidden == false {
+//                view.frame = CGRect(x: width, y: margin, width: size.width, height: height)
+//            }
+//
+//        }
     }
     
     override init(frame: CGRect) {
